@@ -1,0 +1,47 @@
+body{
+    background-color: aliceblue;
+    margin: 0px;
+}
+#ligo{
+    width: 100%;
+    margin-bottom: -4px;
+}
+#content{
+    height: 100%;
+    /*margin-bottom: -10px;*/
+    width: 100%;
+    background-image: url("../img/bk.png");
+    background-position: 0 100%;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-size: cover;
+
+}
+img {
+    margin-top: 0px;
+    margin-bottom: 0px;
+    width: 100%;
+    height: 120%;
+}
+#contain{
+    width: 400px;
+    height: 200px;
+    background-color: antiquewhite;
+    position: absolute;
+    left: 40%;
+    top: 30%;
+    -webkit-border-radius: 15px;
+}
+
+#mainLogin{
+    width: 230px;
+    margin-top: 30px;
+    margin-left: auto;
+    margin-right: auto;
+}
+#login{
+    width: 50px;
+    margin-top: 30px;
+    margin-left: auto;
+    margin-right: auto;
+}
