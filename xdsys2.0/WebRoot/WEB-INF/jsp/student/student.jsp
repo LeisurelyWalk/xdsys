@@ -8,10 +8,38 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>个人界面</title>
 <link rel="stylesheet" href="${pageContext.request.contextPath}/css/student.css" type="text/css">
+<script src="${pageContext.request.contextPath}/js/jquery-3.2.1.min.js"></script>
+<script src="${pageContext.request.contextPath}/js/student.js"></script>
 </head>
 <body>
-<div class="dataTable">
-    <table class="tableMes" id="dataTables-example">
+<div class="pageTop">
+    <div class="pageTop-ab">
+        学生平台
+    </div>
+    <div id="welcome">
+        欢迎你
+        <span id ="name">${user.username}</span>
+        今天是：
+
+    </div>
+</div>
+<div class="pageItems">
+    <ul>
+        <li>
+            <a>个人信息</a>
+        </li>
+        <li>
+            <a>选课系统</a>
+        </li>
+        <li>
+            <a>学期成绩</a>
+        </li>
+
+    </ul>
+</div>
+
+<div id="pageData">
+    <table class="tableMes" id="dataTables-example" align='center' style="border-collapse:collapse;">
         <thead>
         <tr>
             <th>学号</th>
@@ -28,10 +56,10 @@
                 <td>${user.sex=='1'?'女':'男'}</td>
                 <td>${user.age}</td>
                 <td>${user.address}</td>
-            </tr>
+        </tr>
         </tbody>
     </table>
-
 </div>
+
 </body>
 </html>

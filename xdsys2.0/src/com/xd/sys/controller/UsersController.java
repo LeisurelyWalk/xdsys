@@ -17,6 +17,7 @@ import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.google.gson.Gson;
+import com.sun.org.apache.xpath.internal.operations.And;
 import com.xd.sys.po.User;
 import com.xd.sys.service.UsersService;
 
@@ -32,16 +33,44 @@ public class UsersController {
 	//@RequestParam里边指定request传入参数名称和形参进行绑定。
 	//通过required属性指定参数是否必须要传入
 	//通过defaultValue可以设置默认值，如果id参数没有传入，将默认值和形参绑定。
-	public String editItems(Model model)throws Exception {
+	public String userLogin(HttpServletRequest request,Model model,@ModelAttribute("msg") String msg, @RequestParam(value="name",required=false) String numid,@RequestParam(value="password",required=false) String password, RedirectAttributes attributes )throws Exception {
 		
 		//调用service根据商品id查询商品信息
 		
 		//通过形参中的model将model数据传到页面
 		//相当于modelAndView.addObject方法
-	
-		return "login";
+		
+		String userid=request.getParameter("name");
+		User user=usersService.findUserByNumid(numid);
+		
+		if(user!=null) {
+			String myPassword=user.getPassword();
+			
+			if(myPassword==null) {
+				attributes.addFlashAttribute("msg", "failure");
+				model.addAttribute("msg", "failure");
+				return "login";
+			}
+			else if(myPassword.equals(password)){
+				attributes.addFlashAttribute("msg", "success");
+				attributes.addFlashAttribute("numid", numid);
+				return "redirect:submit";
 
+			}
+			else {
+				attributes.addFlashAttribute("msg", "failure");
+				model.addAttribute("msg", "failure");
+				return "login";
+			}
+			
+		}
+		else {
+			attributes.addFlashAttribute("msg", "noNumid");
+			model.addAttribute("msg", "noNumid");
+			return "login";
 
+		}
+		
 	}
 	
 	@RequestMapping(value="/student",method={RequestMethod.POST,RequestMethod.GET})
@@ -59,38 +88,42 @@ public class UsersController {
 		return "student/student";
 	}
 	@RequestMapping(value="/submit",method={RequestMethod.POST,RequestMethod.GET})
-	@ResponseBody
 	//@RequestParam里边指定request传入参数名称和形参进行绑定。
 	//通过required属性指定参数是否必须要传入
 	//通过defaultValue可以设置默认值，如果id参数没有传入，将默认值和形参绑定。
-	public Map<String, Object> submit(HttpServletRequest request,Model model,@RequestParam(value="numid",required=false) String numid,@RequestParam(value="password",required=false) String password)throws Exception {
+	public String submit(HttpServletRequest request,Model model,@ModelAttribute("msg") String msg, @ModelAttribute("numid") String numid)throws Exception {
 		
 		//调用service根据商品id查询商品信息
 
 		//通过形参中的model将model数据传到页面
 		//相当于modelAndView.addObject方法
 		User user=usersService.findUserByNumid(numid);
-		Map<String, Object>result= new HashMap<String,Object>();
-
-		
-		if(user!=null) {
-			String myPassword=user.getPassword();
-			
-			if(myPassword==null) {
-				result.put("msg", "success");
-			}
-			else if(myPassword.equals(password)){
-				result.put("msg", "success");
-			}
-			else {
-				result.put("msg", "failure");
-			}
-			
+//
+//		
+//		if(user!=null) {
+//			String myPassword=user.getPassword();
+//			
+//			if(myPassword==null) {
+//				result.put("msg", "success");
+//			}
+//			else if(myPassword.equals(password)){
+//				result.put("msg", "success");
+//			}
+//			else {
+//				result.put("msg", "failure");
+//			}
+//			
+//		}
+//		else {
+//			result.put("msg", "noNumid");
+//		}
+//		String string=(String) result.get("msg");
+//		return result;
+		model.addAttribute("user", user);
+		if(msg.equals("success")) {
+			return "student/student";
 		}
-		else {
-			result.put("msg", "noNumid");
-		}
-		String string=(String) result.get("msg");
-		return result;
+		return "login";
 	}
+	
 }
