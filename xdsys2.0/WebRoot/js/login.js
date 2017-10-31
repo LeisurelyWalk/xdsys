@@ -3,6 +3,13 @@
  */
 $(document).ready(function(){
 
+	var msg=$("#msg").val();
+	 if(msg=="failure"){
+    	 alert("学号，密码不匹配");
+     }
+     else if(msg=="noNumid"){
+    	 alert("学号输入有误");
+     }
 	
 	$("#submit").on("click",function(){
 		var numid=$("#name").val();
