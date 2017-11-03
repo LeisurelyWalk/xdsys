@@ -9,5 +9,7 @@ public interface UsersService {
 
 	public User findUserByNumid(String numid) throws Exception;
 	
+	public void updateCourseByNumid(User user) throws Exception;
+	
 
 }

@@ -105,4 +105,25 @@ a:active,a:hover{
     font-family: Verdana;
     font-weight: bold;
 }
+.courseText{
+    font-family: "Microsoft YaHei";
+    border: 5px solid burlywood;
+    border-radius: 5px;
+    width: 350px;
+    height: 180px;
+
+}
+.courseData{
+    width: 300px;
+    height: 160px;
+    padding: 10px;
+    margin: 10px auto;
+    background-color: transparent;
+    display: table-cell;
+    text-indent: 2em;
+    vertical-align: middle;
+
+}
+
+
 

@@ -9,6 +9,7 @@
     <result column="address" property="address" jdbcType="VARCHAR" />
     <result column="numid" property="numid" jdbcType="CHAR" />
     <result column="password" property="password" jdbcType="CHAR" />
+    <result column="cousrse" property="cousrse" jdbcType="VARCHAR" />
   </resultMap>
   <sql id="Example_Where_Clause" >
     <where >
@@ -69,7 +70,7 @@
     </where>
   </sql>
   <sql id="Base_Column_List" >
-    id, username, age, sex, address, numid, password
+    id, username, age, sex, address, numid, password, cousrse
   </sql>
   <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.xd.sys.po.UserExample" >
     select
@@ -91,6 +92,16 @@
     from user
     where id = #{id,jdbcType=INTEGER}
   </select>
+  
+     <select id="findUserByNumid" parameterType="java.lang.String" resultType="com.xd.sys.po.User" >
+    select * from user where numid = #{id}
+  </select>
+  
+   <select id="findUserByName" parameterType="java.lang.String" resultType="com.xd.sys.po.User" >
+    select * from user where username = #{name}
+  </select>
+  
+  
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
     delete from user
     where id = #{id,jdbcType=INTEGER}
@@ -103,11 +114,11 @@
   </delete>
   <insert id="insert" parameterType="com.xd.sys.po.User" >
     insert into user (id, username, age, 
-      sex, address, numid, password
-      )
+      sex, address, numid, password, 
+      cousrse)
     values (#{id,jdbcType=INTEGER}, #{username,jdbcType=VARCHAR}, #{age,jdbcType=INTEGER}, 
-      #{sex,jdbcType=CHAR}, #{address,jdbcType=VARCHAR}, #{numid,jdbcType=CHAR}, #{password,jdbcType=CHAR}
-      )
+      #{sex,jdbcType=CHAR}, #{address,jdbcType=VARCHAR}, #{numid,jdbcType=CHAR}, #{password,jdbcType=CHAR}, 
+      #{cousrse,jdbcType=VARCHAR})
   </insert>
   <insert id="insertSelective" parameterType="com.xd.sys.po.User" >
     insert into user
@@ -133,6 +144,9 @@
       <if test="password != null" >
         password,
       </if>
+      <if test="cousrse != null" >
+        cousrse,
+      </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides="," >
       <if test="id != null" >
@@ -156,6 +170,9 @@
       <if test="password != null" >
         #{password,jdbcType=CHAR},
       </if>
+      <if test="cousrse != null" >
+        #{cousrse,jdbcType=VARCHAR},
+      </if>
     </trim>
   </insert>
   <select id="countByExample" parameterType="com.xd.sys.po.UserExample" resultType="java.lang.Integer" >
@@ -163,9 +180,6 @@
     <if test="_parameter != null" >
       <include refid="Example_Where_Clause" />
     </if>
-  </select>
-   <select id="findUserByNumid" parameterType="java.lang.String" resultType="com.xd.sys.po.User" >
-    select * from user where numid = #{id}
   </select>
   <update id="updateByExampleSelective" parameterType="map" >
     update user
@@ -191,6 +205,9 @@
       <if test="record.password != null" >
         password = #{record.password,jdbcType=CHAR},
       </if>
+      <if test="record.cousrse != null" >
+        cousrse = #{record.cousrse,jdbcType=VARCHAR},
+      </if>
     </set>
     <if test="_parameter != null" >
       <include refid="Update_By_Example_Where_Clause" />
@@ -204,7 +221,8 @@
       sex = #{record.sex,jdbcType=CHAR},
       address = #{record.address,jdbcType=VARCHAR},
       numid = #{record.numid,jdbcType=CHAR},
-      password = #{record.password,jdbcType=CHAR}
+      password = #{record.password,jdbcType=CHAR},
+      cousrse = #{record.cousrse,jdbcType=VARCHAR}
     <if test="_parameter != null" >
       <include refid="Update_By_Example_Where_Clause" />
     </if>
@@ -230,6 +248,9 @@
       <if test="password != null" >
         password = #{password,jdbcType=CHAR},
       </if>
+      <if test="cousrse != null" >
+        cousrse = #{cousrse,jdbcType=VARCHAR},
+      </if>
     </set>
     where id = #{id,jdbcType=INTEGER}
   </update>
@@ -240,7 +261,8 @@
       sex = #{sex,jdbcType=CHAR},
       address = #{address,jdbcType=VARCHAR},
       numid = #{numid,jdbcType=CHAR},
-      password = #{password,jdbcType=CHAR}
+      password = #{password,jdbcType=CHAR},
+      cousrse = #{cousrse,jdbcType=VARCHAR}
     where id = #{id,jdbcType=INTEGER}
   </update>
 </mapper>

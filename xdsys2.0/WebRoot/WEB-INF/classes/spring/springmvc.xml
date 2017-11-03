@@ -11,14 +11,12 @@
 		http://www.springframework.org/schema/aop 
 		http://www.springframework.org/schema/aop/spring-aop-4.2.xsd 
 		http://www.springframework.org/schema/tx 
-		http://www.springframework.org/schema/tx/spring-tx-4.2.xsd ">
+		http://www.springframework.org/schema/tx/spring-tx-4.1.xsd">
 
 	<!-- 可以扫描controller、service、...
 	这里让扫描controller，指定controller的包
 	 -->
 	<context:component-scan base-package="com.xd.sys.controller"></context:component-scan>
-	
-		
 	<!--注解映射器 -->
 	<!-- <bean class="org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping"/> -->
 	<!--注解适配器 -->
@@ -30,7 +28,6 @@
 	实际开发时使用mvc:annotation-driven
 	 -->
 	<mvc:annotation-driven ></mvc:annotation-driven>
-	
     <!--用于解析@RequestBody-->
     <bean id="conversionService"
           class="org.springframework.format.support.FormattingConversionServiceFactoryBean"></bean>
