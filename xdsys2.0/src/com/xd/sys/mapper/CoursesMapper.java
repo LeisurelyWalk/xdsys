@@ -21,6 +21,8 @@ public interface CoursesMapper {
     List<Courses> selectByExample(CoursesExample example);
     
     List<Courses> selectByCourse(@Param(value="name") String name);
+    
+    List<Courses> getAllCourses();
 
     Courses selectByPrimaryKey(Integer id);
 

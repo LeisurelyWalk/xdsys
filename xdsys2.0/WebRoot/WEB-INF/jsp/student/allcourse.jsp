@@ -47,7 +47,7 @@
             <th>老师</th>
             <th>学分</th>
             <th>课程介绍</th>
-            <th>成绩</th>
+            <th>选择</th>
         </tr>
         </thead>
         <tbody>
@@ -65,10 +65,12 @@
                     </div>
                 </div>
             </td>
-            <td>${arrCourses.students}</td>
+            <td><input type="checkbox" style="width: 30px;height: 30px"/></td>
         </tr>
         </c:forEach>
-
+        <tr>
+            <td colspan="8"><input type="button" id="checkSubmit" value="提交"> </td>
+        </tr>
         </tbody>
     </table>
 </div>

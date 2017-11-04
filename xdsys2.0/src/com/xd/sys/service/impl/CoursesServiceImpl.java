@@ -27,4 +27,10 @@ public class CoursesServiceImpl implements CoursesService{
 		return coursesMapper.selectByPrimaryKey(id);
 	}
 
+	@Override
+	public List<Courses> getAllCourses() throws Exception {
+		// TODO Auto-generated method stub
+		return coursesMapper.getAllCourses();
+	}
+
 }

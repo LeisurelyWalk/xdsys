@@ -29,7 +29,7 @@
             <a href="${pageContext.request.contextPath}/users/submit">个人信息</a>
         </li>
         <li>
-            <a href="${pageContext.request.contextPath}/users/course">选课系统</a>
+            <a href="${pageContext.request.contextPath}/course/allCourses">选课系统</a>
         </li>
         <li>
             <a href="${pageContext.request.contextPath}/users/course">学期成绩</a>

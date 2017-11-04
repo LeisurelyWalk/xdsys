@@ -152,6 +152,7 @@ public class UsersController {
 			arrCourses.add(courtp);
 		}
 		model.addAttribute("arrCourses", arrCourses);
+		model.addAttribute("user", tpUser);
 		//通过形参中的model将model数据传到页面
 		//相当于modelAndView.addObject方法
 //		String[] strings= {"1111","1112","1113","2222","5551","5555","5556","5557","5558","5559","6666","6667","6668","6669","7777","7778","8888"};

@@ -221,6 +221,9 @@
     select * from courses where students LIKE '%${name}%'
   </select>
   
+    <select id="getAllCourses" resultType="com.xd.sys.po.Courses" >
+    select * from courses
+  </select>
   
   <update id="updateByExampleWithBLOBs" parameterType="map" >
     update courses
