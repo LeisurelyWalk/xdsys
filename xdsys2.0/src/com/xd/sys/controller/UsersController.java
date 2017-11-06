@@ -72,7 +72,13 @@ public class UsersController {
 			else if(myPassword.equals(password)){
 				attributes.addFlashAttribute("msg", "success");
 				attributes.addFlashAttribute("numid", numid);
-				return "redirect:submit";
+				if(numid.equals("0000"))
+				{
+					return "redirect:admin";
+				}
+				else 
+					return "redirect:submit";
+				
 
 			}
 			else {
@@ -153,42 +159,22 @@ public class UsersController {
 		}
 		model.addAttribute("arrCourses", arrCourses);
 		model.addAttribute("user", tpUser);
-		//通过形参中的model将model数据传到页面
-		//相当于modelAndView.addObject方法
-//		String[] strings= {"1111","1112","1113","2222","5551","5555","5556","5557","5558","5559","6666","6667","6668","6669","7777","7778","8888"};
-//	for (String string : strings) {
-//		User tpUser=usersService.findUserByNumid(string);
-//		List<Courses> tpCourses=coursesService.selectByCourse(tpUser.getUsername());
-//		
-//		userUtil userutil=new userUtil();
-//		Map<Integer, String>res=new HashMap<Integer,String>();
-//		
-//		for (Courses course : tpCourses) {
-//			String students=course.getStudents();
-//			int courseId=course.getId();
-//			Map<String, String>teMap=userutil.getStudentsAndGoals(students);
-//			res.put(courseId, teMap.get(tpUser.getUsername()));
-//			
-//		}
-//		if(res.size()<1)
-//		{
-//			continue;
-//		}
-//		String str="";
-//		
-//		for (Integer key : res.keySet()) {
-//
-//		    String value = res.get(key);
-//		    str+=key.toString();
-//		    str+=":"+value+";";
-//		}
-//		str=str.substring(0, str.length()-1);
-//		tpUser.setCousrse(str);
-//		
-//		usersService.updateCourseByNumid(tpUser);
-//	}
-//		return "success";
+		
 		return "student/course";
 	}
-	
+	@RequestMapping(value="/admin",method={RequestMethod.POST,RequestMethod.GET})
+	//@RequestParam里边指定request传入参数名称和形参进行绑定。
+	//通过required属性指定参数是否必须要传入
+	//通过defaultValue可以设置默认值，如果id参数没有传入，将默认值和形参绑定。
+	public String signInAdmin(HttpServletRequest request,Model model,HttpSession session)throws Exception {
+		
+		//调用service根据商品id查询商品信息
+		String numid=(String) session.getAttribute("numid");
+		User tpUser=usersService.findUserByNumid(numid);
+		List<Courses> listCourses=coursesService.getAllCourses();
+		model.addAttribute("user", tpUser);
+		model.addAttribute("arrCourses", listCourses);
+		
+		return "admin/admin";
+	}
 }

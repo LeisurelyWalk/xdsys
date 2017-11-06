@@ -21,7 +21,6 @@ $(document).ready(function () {
             dataType: "json",
             data: {"arrId":JSON.stringify(numidArr)},
             success: function(data) {
-                alert()
 //	            $("#result").val(ss);
                 console.log(data);
             }

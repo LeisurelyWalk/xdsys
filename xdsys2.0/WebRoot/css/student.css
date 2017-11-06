@@ -124,6 +124,14 @@ a:active,a:hover{
     vertical-align: middle;
 
 }
+.courseInput{
+    width: 150px;
+    height: 30px;
+    margin: 5px 3px;
 
+}
+#introduction{
+    height: 50px;
+}
 
 

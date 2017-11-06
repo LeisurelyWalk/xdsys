@@ -11,5 +11,7 @@ public interface CoursesService {
 	public Courses selectById(Integer id) throws Exception;
 	
 	public List<Courses> getAllCourses() throws Exception;
+	
+	public int insert(Courses record) throws Exception;
 
 }

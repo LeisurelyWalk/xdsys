@@ -242,9 +242,6 @@
       <if test="address != null" >
         address = #{address,jdbcType=VARCHAR},
       </if>
-      <if test="numid != null" >
-        numid = #{numid,jdbcType=CHAR},
-      </if>
       <if test="password != null" >
         password = #{password,jdbcType=CHAR},
       </if>
@@ -252,7 +249,7 @@
         cousrse = #{cousrse,jdbcType=VARCHAR},
       </if>
     </set>
-    where id = #{id,jdbcType=INTEGER}
+    where numid = #{numid,jdbcType=CHAR}
   </update>
   <update id="updateByPrimaryKey" parameterType="com.xd.sys.po.User" >
     update user

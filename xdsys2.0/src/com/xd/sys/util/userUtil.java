@@ -14,9 +14,6 @@ import com.xd.sys.po.Courses;
 
 public class userUtil {
 	
-	@Autowired
-	private CoursesService coursesService;
-	
 	
 	public Map<String, String> getStudentsAndGoals(String stu) {
 		Map<String, String> res=new HashMap<String,String>();
@@ -25,6 +22,21 @@ public class userUtil {
 			String[] temp=string.split(":");
 			res.put(temp[0], temp[1]);
 		}
+		return res;
+		 
+	}
+	
+	public String toStringStudentsAndGoals(Map<String, String> stu) {
+		String res="";
+		for(String str:stu.keySet()) {
+		    String value = stu.get(str);
+		    res+=str;
+		    res+=":"+value+";";
+		}
+		if(res.length()<1) {
+			return res;
+		}
+		res=res.substring(0, res.length()-1);
 		return res;
 		 
 	}

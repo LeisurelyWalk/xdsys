@@ -33,4 +33,10 @@ public class CoursesServiceImpl implements CoursesService{
 		return coursesMapper.getAllCourses();
 	}
 
+	@Override
+	public int insert(Courses record) throws Exception {
+		// TODO Auto-generated method stub
+		return coursesMapper.insertSelective(record);
+	}
+
 }
